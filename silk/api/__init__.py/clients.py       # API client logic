@@ -1,0 +1,27 @@
+class ApiClient:
+    def __init__(self, base_url, api_key):
+        self.base_url = base_url
+        self.api_key = api_key
+
+    def get_host(self, host_id):
+        """Retrieve a host by its ID."""
+        response = requests.get(f"{self.base_url}/hosts/{host_id}", headers=self._get_headers())
+        return self._handle_response(response)
+
+    def update_host(self, host_id, data):
+        """Update a host's information."""
+        response = requests.put(f"{self.base_url}/hosts/{host_id}", json=data, headers=self._get_headers())
+        return self._handle_response(response)
+
+    def _get_headers(self):
+        """Return the headers for API requests."""
+        return {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json"
+        }
+
+    def _handle_response(self, response):
+        """Handle the API response."""
+        if response.status_code != 200:
+            raise ApiError(f"API request failed with status {response.status_code}: {response.text}")
+        return response.json()

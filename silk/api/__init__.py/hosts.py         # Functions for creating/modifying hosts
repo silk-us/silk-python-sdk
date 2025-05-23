@@ -1,0 +1,13 @@
+def create_host(api_client, host_data):
+    response = api_client.post('/hosts', json=host_data)
+    if response.status_code == 201:
+        return response.json()
+    else:
+        raise Exception(f"Failed to create host: {response.text}")
+
+def modify_host(api_client, host_id, host_data):
+    response = api_client.put(f'/hosts/{host_id}', json=host_data)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        raise Exception(f"Failed to modify host: {response.text}")

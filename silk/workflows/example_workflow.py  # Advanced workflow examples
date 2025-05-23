@@ -1,0 +1,31 @@
+def run_example_workflow(api_client):
+    """
+    Example workflow that demonstrates how to create a host and then retrieve it.
+
+    Args:
+        api_client (ApiClient): An instance of the ApiClient to interact with the Silk API.
+    """
+    try:
+        # Step 1: Create a new host
+        host_data = {
+            "name": "example-host",
+            "description": "This is an example host created for the workflow.",
+            "ip_address": "192.168.1.1"
+        }
+        new_host = api_client.create_host(host_data)
+        print(f"Created host: {new_host}")
+
+        # Step 2: Retrieve the created host
+        retrieved_host = api_client.get_host(new_host['id'])
+        print(f"Retrieved host: {retrieved_host}")
+
+        # Additional steps can be added here to modify the host or perform other actions
+        # For example, modifying the host
+        modified_data = {
+            "description": "Updated description for the example host."
+        }
+        modified_host = api_client.modify_host(new_host['id'], modified_data)
+        print(f"Modified host: {modified_host}")
+
+    except Exception as e:
+        print(f"An error occurred during the workflow: {e}")

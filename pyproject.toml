@@ -1,0 +1,30 @@
+[tool]
+name = "silk-python-sdk"
+version = "0.1.0"
+description = "A Python development kit for working with the Silk API."
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/yourusername/silk-python-sdk"
+repository = "https://github.com/yourusername/silk-python-sdk"
+keywords = ["silk", "sdk", "api", "python"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+requests = "^2.25.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+black = "^21.7b0"
+flake8 = "^3.9.2"
+
+[tool.poetry.scripts]
+silk = "silk.__init__:main"  # Adjust this if you have a main function to run
+
+[project.urls]
+Documentation = "https://github.com/yourusername/silk-python-sdk#readme"
+Issues = "https://github.com/yourusername/silk-python-sdk/issues"
